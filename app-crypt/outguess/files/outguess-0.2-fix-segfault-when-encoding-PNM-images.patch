@@ -1,0 +1,29 @@
+From 78096e8fb29f7b639b913472f089f90f9bf21ed2 Mon Sep 17 00:00:00 2001
+From: Chris Rorvick <chris@rorvick.com>
+Date: Thu, 1 Sep 2016 00:43:06 -0500
+Subject: [PATCH] fix segfault when encoding PNM images
+
+OutGuess 0.2 added the ability to preserve frequency counts in JPEG
+images to foil statistical tests.  This was stubbed out in the PNM
+driver but forgot to do some necessary setup.  Assign `bitmap.preserve'
+accordingly to avoid calling a null pointer.
+---
+ pnm.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/pnm.c b/pnm.c
+index 3bfc330..f1aa65d 100644
+--- a/pnm.c
++++ b/pnm.c
+@@ -63,6 +63,8 @@ init_pnm(char *parameter)
+ int
+ preserve_pnm(bitmap *bitmap, int off)
+ {
++	if (off == -1)
++		bitmap->preserve = preserve_pnm;
+ 
+ 	return (-1);
+ }
+-- 
+2.9.3
+
