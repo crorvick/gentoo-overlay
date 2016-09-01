@@ -14,7 +14,10 @@ IUSE=""
 DEPEND="virtual/libc"
 
 PATCHES=(
+	"${FILESDIR}"/${P}-avoid-implicit-function-usage.patch
+	"${FILESDIR}"/${P}-fix-printf-argument-types.patch
 	"${FILESDIR}"/${P}-fix-segfault-when-encoding-PNM-images.patch
+	"${FILESDIR}"/${P}-pass-struct-size-to-memset.patch
 )
 
 S=${WORKDIR}/${PN}

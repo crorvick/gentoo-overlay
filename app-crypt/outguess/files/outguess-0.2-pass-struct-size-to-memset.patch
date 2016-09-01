@@ -1,0 +1,25 @@
+From 37a4bf9523f18e5e1b064becf50112d47fae2acd Mon Sep 17 00:00:00 2001
+From: Chris Rorvick <chris@rorvick.com>
+Date: Thu, 1 Sep 2016 01:49:14 -0500
+Subject: [PATCH] pass struct size to memset(), not pointer size
+
+---
+ missing/md5.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/missing/md5.c b/missing/md5.c
+index 314548a..2da3835 100644
+--- a/missing/md5.c
++++ b/missing/md5.c
+@@ -168,7 +168,7 @@ MD5Final(digest, ctx)
+ 	putu32(ctx->buf[1], digest + 4);
+ 	putu32(ctx->buf[2], digest + 8);
+ 	putu32(ctx->buf[3], digest + 12);
+-	memset(ctx, 0, sizeof(ctx));	/* In case it's sensitive */
++	memset(ctx, 0, sizeof(*ctx));	/* In case it's sensitive */
+ }
+ 
+ #ifndef ASM_MD5
+-- 
+2.9.3
+
