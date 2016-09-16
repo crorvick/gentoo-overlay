@@ -1,0 +1,28 @@
+From b22cf42466eef7c290cfad2b5ac2a2dcd512eaa3 Mon Sep 17 00:00:00 2001
+From: Chris Rorvick <chris@rorvick.com>
+Date: Fri, 16 Sep 2016 00:46:54 -0500
+Subject: [PATCH] add noops for unsupported arguments
+
+---
+ jpeg-6b/configure | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/jpeg-6b/configure b/jpeg-6b/configure
+index 35c9db5..ee0a7f9 100755
+--- a/jpeg-6b/configure
++++ b/jpeg-6b/configure
+@@ -383,6 +383,11 @@ EOF
+   | --x-librar=* | --x-libra=* | --x-libr=* | --x-lib=* | --x-li=* | --x-l=*)
+     x_libraries="$ac_optarg" ;;
+ 
++  # ignore options not supported by this old script
++  --docdir | --docdir=* \
++  | --htmldir | --htmldir=*)
++    ;;
++
+   -*) { echo "configure: error: $ac_option: invalid option; use --help to show usage" 1>&2; exit 1; }
+     ;;
+ 
+-- 
+2.10.0
+
