@@ -423,11 +423,6 @@ src_install() {
 		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
 	fi
 
-	if use python && use gtk ; then
-		python_doscript "${S}"/contrib/gitview/gitview
-		dodoc "${S}"/contrib/gitview/gitview.txt
-	fi
-
 	#dobin contrib/fast-import/git-p4 # Moved upstream
 	#dodoc contrib/fast-import/git-p4.txt # Moved upstream
 	newbin contrib/fast-import/import-tars.perl import-tars
@@ -488,7 +483,6 @@ src_install() {
 	# emacs - installed above
 	# examples - these are stuff that is not used in Git anymore actually
 	# git-jump - done above
-	# gitview - installed above
 	# p4import - excluded because fast-import has a better one
 	# patches - stuff the Git guys made to go upstream to other places
 	# persistent-https - TODO
