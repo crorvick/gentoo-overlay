@@ -1,0 +1,13 @@
+diff -Nau -r cfengine-3.6.7.orig/libenv/unix_iface.c cfengine-3.6.7/libenv/unix_iface.c
+--- cfengine-3.6.7.orig/libenv/unix_iface.c	2017-05-29 22:07:22.075638167 -0500
++++ cfengine-3.6.7/libenv/unix_iface.c	2017-05-29 22:40:15.708175014 -0500
+@@ -624,7 +624,8 @@
+         return;
+     }
+ #else
+-    if (!FileCanOpen("/sbin/ifconfig", "r") || ((pp = cf_popen("/sbin/ifconfig -a", "r", true)) == NULL))
++    // Gentoo installs ifconfig(8) to /bin
++    if (!FileCanOpen("/bin/ifconfig", "r") || ((pp = cf_popen("/bin/ifconfig -a", "r", true)) == NULL))
+     {
+         Log(LOG_LEVEL_VERBOSE, "Could not find interface info");
+         return;

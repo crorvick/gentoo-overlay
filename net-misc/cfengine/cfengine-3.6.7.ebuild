@@ -12,8 +12,8 @@ MY_P="${PN}-${MY_PV}"
 DESCRIPTION="An automated suite of programs for configuring and maintaining
 Unix-like computers"
 HOMEPAGE="http://www.cfengine.org/"
-SRC_URI="http://cfengine.package-repos.s3.amazonaws.com/tarballs/${MY_P}.tar.gz -> ${MY_P}.tar.gz
-	masterfiles? ( http://cfengine.package-repos.s3.amazonaws.com/tarballs/masterfiles-${MY_PV}.tar.gz -> ${PN}-masterfiles-${MY_PV}.tar.gz )"
+SRC_URI="https://cfengine-package-repos.s3.amazonaws.com/tarballs/${MY_P}.tar.gz
+	masterfiles? ( https://cfengine-package-repos.s3.amazonaws.com/tarballs/cfengine-masterfiles-${MY_PV}.tar.gz )"
 
 LICENSE="GPL-3"
 SLOT="3"
@@ -75,6 +75,11 @@ src_configure() {
 
 	# We install the documentation through portage
 	sed -i -e 's/\(install-data-am.*\) install-docDATA/\1/' Makefile || die
+
+	if use masterfiles; then
+		cd "${WORKDIR}/cfengine-masterfiles-${MY_PV}"
+		econf --prefix=/var/cfengine
+	fi
 }
 
 src_install() {
@@ -109,8 +114,8 @@ src_install() {
 	done
 
 	if use masterfiles; then
-		insinto /var/cfengine
-		doins -r "${WORKDIR}/masterfiles"
+		cd "${WORKDIR}/cfengine-masterfiles-${MY_PV}"
+		emake DESTDIR="${D}" install || die
 	fi
 
 	dodir /etc/env.d
