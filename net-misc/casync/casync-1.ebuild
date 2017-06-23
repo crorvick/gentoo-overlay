@@ -11,6 +11,16 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 
+RDEPEND="
+	sys-fs/fuse
+"
+
+DEPEND="${RDEPEND}
+	dev-util/meson
+	dev-util/ninja
+	virtual/pkgconfig
+	>=sys-kernel/linux-headers-4.5
+"
 
 src_install() {
 	dobin build/casync
