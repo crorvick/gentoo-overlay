@@ -77,9 +77,8 @@ src_configure() {
 }
 
 src_install() {
-	newinitd "${FILESDIR}"/cf-serverd.rc6 cf-serverd || die
-	newinitd "${FILESDIR}"/cf-monitord.rc6 cf-monitord || die
-	newinitd "${FILESDIR}"/cf-execd.rc6 cf-execd || die
+	newinitd "${FILESDIR}"/cfengine3.initd cfengine3
+	newconfd "${FILESDIR}"/cfengine3.confd cfengine3
 
 	emake DESTDIR="${D}" install || die
 
