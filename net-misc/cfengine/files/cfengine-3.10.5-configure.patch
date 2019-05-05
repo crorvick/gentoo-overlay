@@ -1,7 +1,7 @@
-diff -rNau cfengine-3.10.1.orig/configure.ac cfengine-3.10.1/configure.ac
---- cfengine-3.10.1.orig/configure.ac	2017-03-15 12:35:46.000000000 -0500
-+++ cfengine-3.10.1/configure.ac	2018-01-19 21:40:56.187288137 -0600
-@@ -507,8 +507,11 @@
+diff -Naur cfengine-3.10.5.orig/configure.ac cfengine-3.10.5/configure.ac
+--- cfengine-3.10.5.orig/configure.ac	2018-11-16 01:50:14.000000000 -0600
++++ cfengine-3.10.5/configure.ac	2019-05-05 13:08:40.252013842 -0500
+@@ -515,8 +515,11 @@
        [],
        [if test "x$with_libacl" != xcheck; then AC_MSG_ERROR(Cannot find libacl library); fi])
      AC_CHECK_HEADERS([acl.h sys/acl.h acl/libacl.h],

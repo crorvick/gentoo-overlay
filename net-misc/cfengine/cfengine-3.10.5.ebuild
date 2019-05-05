@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -77,7 +77,9 @@ src_configure() {
 }
 
 src_install() {
-	newinitd "${FILESDIR}"/cfengine3.initd cfengine3
+	newinitd "${FILESDIR}"/cf-serverd.rc6 cf-serverd || die
+	newinitd "${FILESDIR}"/cf-monitord.rc6 cf-monitord || die
+	newinitd "${FILESDIR}"/cf-execd.rc6 cf-execd || die
 	newconfd "${FILESDIR}"/cfengine3.confd cfengine3
 
 	emake DESTDIR="${D}" install || die
