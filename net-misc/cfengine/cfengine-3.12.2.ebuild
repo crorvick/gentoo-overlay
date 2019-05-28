@@ -45,6 +45,7 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	default
 	epatch "${FILESDIR}/${P}-logging-fix.patch"
+	epatch "${FILESDIR}/${P}-ipv6-address.patch"
 	eautoreconf
 }
 
